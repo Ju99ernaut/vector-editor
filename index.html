@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vector-editor</title>
+    <meta charset="utf-8">
+    <meta name="viewport"  content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="A free open source vector design app">
+    <meta name="author" content="Michael Schwartz">
+    <link rel="stylesheet" href="libraries/polyui/polyui.css" />
+    <link rel="stylesheet" href="libraries/mdl/material.min.css" />
+    <link rel="stylesheet" href="libraries/alertifyjs/themes/alertify.core.css" />
+    <link rel="stylesheet" href="libraries/alertifyjs/themes/alertify.default.css" />
+    <link rel="stylesheet" href="libraries/sweetalert2/sweetalert2.min.css" />
+    <link rel="stylesheet" href="libraries/jqueryminicolors/jquery.minicolors.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:500,400,300,100&amp;subset=latin,latin-ext'>
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <div class="mdl-layout-spacer"></div>
+          
+          <!-- editor navigation -->
+          <nav class="mdl-navigation">
+            <button id="usertools" class="mdl-button mdl-js-button mdl-button--icon" title="Tools" data-active="tool" data-toolName="Pointer">
+              <i class="material-icons">format_shapes</i>
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--icon" data-toggle="grid" title="Grid On">
+              <i class="material-icons">grid_off</i>
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--icon" title="Undo" onclick="undo()">
+              <i class="material-icons">undo</i>
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--icon" title="Redo" onclick="redo()">
+              <i class="material-icons">redo</i>
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Properties" data-properties="icon">
+              <i class="material-icons">tune</i>
+            </button>
+            <span class="hide" data-properties="group">
+              <button id="menu-opacity" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Change Opacity">
+                <i class="material-icons">opacity</i>
+              </button>
+              <button id="menu-fill-color-picker" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Change Fill Color">
+                <i class="material-icons">color_lens</i>
+              </button>
+              <button id="menu-stroke-color-picker" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Change Stroke Color">
+                <i class="material-icons">border_color</i>
+              </button>
+              <button id="menu-stroke-width" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Change Stroke Width">
+                <i class="material-icons">border_all</i>
+              </button>
+            </span>
+            <span class="isselected hide" data-menu="icons">
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Copy" onclick="copy()">
+                <i class="material-icons">content_copy</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Paste" onclick="paste()">
+                <i class="material-icons">content_paste</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Duplicate/Clone" onclick="duplicate()">
+                <i class="material-icons">file_copy</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Delete Element" onclick="remove()">
+                <i class="material-icons">delete</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Send To Front" onclick="bringForward()">
+                <i class="material-icons">arrow_forward_ios</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Send To Front" onclick="bringToFront()">
+                <i class="material-icons">flip_to_front</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Send To Back" onclick="sendBackwards()">
+                <i class="material-icons">arrow_back_ios</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Send To Back" onclick="sendToBack()">
+                <i class="material-icons">flip_to_back</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Flip Horizontally" onclick="flipH()">
+                <i class="material-icons">flip</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Flip Vertically" onclick="flipV()">
+                <i class="material-icons" style="transform: rotate(90deg); transform-origin: top;">flip</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Rotate CW" onclick="rotateCW()">
+                <i class="material-icons">rotate_right</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Rotate CCW" onclick="rotateCCW()">
+                <i class="material-icons">rotate_left</i>
+              </button>
+              <button id="useralign" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Align/Distribute">
+                <i class="material-icons">sort</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Ungroup" onclick="ungroup()">
+                <i class="material-icons">leak_remove</i>
+              </button>
+            </span>
+          </nav>
+          
+          <!-- opacity dropdown -->
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="menu-opacity" style="width: 214px; padding: 5px 7px;">
+            <p style="width:200px; margin: 8px 0;">
+              <input class="mdl-slider mdl-js-slider" type="range" id="opac" min="0" max="1" value="1" step=".1">
+            </p>
+          </ul>
+          
+          <!-- fillColor picker dropdown -->
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="menu-fill-color-picker" style="width: 214px; height: 200px; padding: 5px 7px;">
+            <div data-picker="fill"></div>
+          </ul>
+          
+          <!-- strokeColor picker dropdown -->
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="menu-stroke-color-picker" style="width: 214px; height: 200px; padding: 5px 7px;">
+            <div data-picker="stroke"></div>
+          </ul>
+          
+          <!-- border dropdown -->
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="menu-stroke-width" style="width: 214px; padding: 5px 7px;">
+            <p style="width:200px; margin: 8px 0;">
+              <input class="mdl-slider mdl-js-slider" type="range" id="strokeW" min="0" max="100" value="1" step="1">
+            </p>
+          </ul>
+          
+          <!-- Tools -->
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="usertools">
+            <li class="mdl-menu__item" data-change="tool">
+              <i class="material-icons">format_shapes</i>
+              <span>
+                Pointer
+              </span>
+            </li>
+            <li class="mdl-menu__item" data-change="tool">
+              <i class="material-icons">brush</i>
+              <span>
+                Brush
+              </span>
+            </li>
+            <li class="mdl-menu__item" data-change="tool">
+              <i class="material-icons">linear_scale</i>
+              <span>
+                Line
+              </span>
+            </li>
+            <li class="mdl-menu__item" data-change="tool">
+              <i class="material-icons" style="transform: scale(1.5);">stop</i>
+              <span>
+                Rectangle
+              </span>
+            </li>
+            <li class="mdl-menu__item" data-change="tool">
+              <i class="material-icons">circle</i>
+              <span>
+                Ellipse
+              </span>
+            </li>
+            <li class="mdl-menu__item" data-change="tool">
+              <i class="material-icons">title</i>
+              <span>
+                Text
+              </span>
+            </li>
+            <li class="mdl-menu__item" data-change="tool">
+              <i class="material-icons">search</i>
+              <span>
+                Zoom
+              </span>
+            </li>
+          </ul>
+          
+          <!-- Element Alignments -->
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="useralign">
+            <li class="mdl-menu__item" onclick="alignLeft()">
+              <i class="material-icons">align_horizontal_left</i>
+              <span>
+                Align Left
+              </span>
+            </li>
+            <li class="mdl-menu__item" onclick="alignCenter()">
+              <i class="material-icons">align_horizontal_center</i>
+              <span>
+                Align Center
+              </span>
+            </li>
+            <li class="mdl-menu__item" onclick="alignRight()">
+              <i class="material-icons">align_horizontal_right</i>
+              <span>
+                Align Right
+              </span>
+            </li>
+            <li class="mdl-menu__item" onclick="alignTop()">
+              <i class="material-icons">vertical_align_top</i>
+              <span>
+                Align Top
+              </span>
+            </li>
+            <li class="mdl-menu__item" onclick="alignMiddle()">
+              <i class="material-icons">vertical_align_center</i>
+              <span>
+                Align Middle
+              </span>
+            </li>
+            <li class="mdl-menu__item" onclick="alignBottom()">
+              <i class="material-icons">vertical_align_bottom</i>
+              <span>
+                Align Bottom
+              </span>
+            </li>
+          </ul>
+        </div>
+      </header>
+      
+      <!--Menubar-->
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Navigation</span>
+        <hr>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link ripple pointer" data-new="project">
+            <i class="material-icons" role="presentation">fiber_new</i> &nbsp; New File
+          </a>
+          <a class="mdl-navigation__link ripple pointer" data-load="svg">
+            <i class="material-icons" role="presentation">upload_file</i> &nbsp; Load File
+          </a>
+          <a class="mdl-navigation__link ripple pointer" data-save="svg">
+            <i class="material-icons" role="presentation">save</i> &nbsp; Save File
+          </a>
+          <a class="mdl-navigation__link ripple pointer" data-open="projectSettings">
+            <i class="material-icons" role="presentation">settings_applications</i> &nbsp; Project Settings
+          </a>
+          <hr>
+          <a class="mdl-navigation__link ripple" href="https://michaelsboost.github.io/donate/" target="_blank">
+            <i class="material-icons" role="presentation">favorite</i> &nbsp; Donate
+          </a>
+          <a class="mdl-navigation__link ripple pointer" href="https://michaelsboost.github.io/vector-editor/" target="_blank">
+            <i class="material-icons" role="presentation">code</i> &nbsp; Github Repo
+          </a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="mdl-grid">
+          <!-- svg/vector container -->
+          <div class="vector-container" data-grab="svg">
+            <div data-canvas="container" style="position: absolute; top: 50%; left: 50%; transform: translate(0px, 0px);">
+              <canvas id="canvas"></canvas>
+            </div>
+          </div>
+          
+          <!-- zooming icons -->
+          <button id="zoomin" class="zoomicon zoomin pointer hide">
+            <i class="material-icons">zoom_in</i>
+          </button>
+          <button id="zoomout" class="zoomicon zoomout pointer hide">
+            <i class="material-icons">zoom_out</i>
+          </button>
+          <button id="zoominview" class="zoomicon zoominview pointer hide">
+            <i class="material-icons">pageview</i>
+          </button>
+          <input id="zoomint" class="hide" type="number" value="1" step=".1" min="0" max="99">
+        </div>
+      </main>
+    </div>
+    
+    <!-- project settings -->
+    <div class="divfill pointer projectsettingsbg hide" data-close="projectSettings"></div>
+    <div class="projectSettings hide" data-projectSettings>
+      <div class="grid">
+        <div class="grid__col--12">
+          <h2 class="headline-secondary--grouped nomarb">Project name</h2>
+          <input class="form__input" type="text" data-project="name" value="My Awesome Design">
+
+          <div class="grid__col--6">
+            <h2 class="headline-secondary--grouped nomarb">Canvas width</h2>
+            <input class="form__input" type="number" data-project="width" value="512" min="1" step="1">
+          </div>
+
+          <div class="grid__col--6">
+            <h2 class="headline-secondary--grouped nomarb">Canvas height</h2>
+            <input class="form__input" type="number" data-project="height" value="512" min="1" step="1">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- load svg/json file -->
+    <div class="hide">
+      <input type="file" accept="image/svg+xml" onchange="upload(event)">
+    </div>
+    
+    <script src="libraries/mdl/material.min.js"></script>
+    <script src="libraries/alertifyjs/alertify.min.js"></script>
+    <script src="libraries/sweetalert2/sweetalert2.min.js"></script>
+    <script src="libraries/jquery/jquery.js"></script>
+    <script src="libraries/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script src="libraries/jqueryminicolors/jquery.minicolors.js"></script>
+    <script src="libraries/fabricjs/fabric.min.js"></script>
+    <script src="libraries/bowser/bowser.min.js"></script>
+    <script src="libraries/jszip/Blob.js"></script>
+    <script src="libraries/jszip/FileSaver.js"></script>
+    <script src="libraries/jszip/jszip.min.js"></script>
+    <script src="libraries/jszip/jszip-utils.js"></script>
+    <script src="libraries/gsap/minified/gsap.min.js"></script>
+    <script src="libraries/gsap/minified/EasePack.min.js"></script>
+    <script src="libraries/gsap/minified/MotionPathPlugin.min.js"></script>
+    <script src="libraries/gsap/minified/TextPlugin.min.js"></script>
+    <script src="libraries/gsap/minified/CSSRulePlugin.min.js"></script>
+    <script src="libraries/tinycolor/tinycolor.js"></script>
+    <script src="js/browserdetect.js"></script>
+    <script src="js/newproject.js"></script>
+    <script src="js/save-svg.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/layers.js"></script>
+    <script src="js/tools.js"></script>
+    <script src="js/opacity.js"></script>
+    <script src="js/fillColor.js"></script>
+    <script src="js/strokeColor.js"></script>
+    <script src="js/strokeWidth.js"></script>
+    <script src="js/undoredo.js"></script>
+    <script src="js/loadfiles.js"></script>
+    <script src="js/projectsettings.js"></script>
+  </body>
+</html>
