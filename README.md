@@ -22,7 +22,7 @@ vector-editor uses a number of open source projects to work properly:
 * [JQuery Mini Colors](https://labs.abeautifulsite.net/jquery-minicolors/) - Color picker
 * [Material Design Lite](https://getmdl.io/) - Beautiful and customizable responsive interface library
 * [Poly UI Kit](https://github.com/Guilh/Poly) - Beautiful and customizable responsive interface library
-* [Fabric.js](http://fabricjs.com/) - An amazing canvas based library that makes this simple svg designer possible
+* [Fabric.js](http://fabricjs.com/) - An amazing canvas based library that makes this vector editor possible
 * [FileSaver.js](https://github.com/eligrey/FileSaver.js/) - Client-side solution for saving files
 * [AlertifyJS](http://alertifyjs.com/) - For the awesome and stylish alert notification dialogs
 * [SweetAlert2](https://sweetalert2.github.io/) - Stylish alert dialog
