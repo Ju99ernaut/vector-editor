@@ -13,14 +13,9 @@ document.querySelector("[data-save=svg]").onclick = function () {
   $('.mdl-layout__obfuscator').removeClass('is-visible');
 
   var yourSVG = canvas.toSVG();
-  var projectname = document.querySelector("[data-project=name]").value.toLowerCase().replace(/ /g, "-")
-  if (!$("[data-project=name]")[0].value.toLowerCase().replace(/ /g, "-")) {
-    projectname = document.querySelector("[data-project=name]").value;
-  }
 
-  blob = new Blob([yourSVG], { type: "image/svg+xml" });
   console.log('====================================');
-  console.log(blob);
+  console.log(yourSVG);
   console.log('====================================');
   //saveAs(blob, projectname + ".svg");
 };
