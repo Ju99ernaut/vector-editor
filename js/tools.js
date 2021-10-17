@@ -831,8 +831,15 @@ function removeEvents() {
 
 // toggle properties for selected item
 $('[data-properties=icon]').click(function () {
-  $('[data-menu=icons]').toggle();
-  $('[data-properties=group]').toggle();
+  const tools = $('[data-menu=icons]');
+  const props = $('[data-properties=group]');
+  if (tools[0].style.display === 'none') {
+    tools.show();
+    props.hide();
+  } else {
+    tools.hide();
+    props.show();
+  }
 });
 
 // change tool
@@ -938,7 +945,7 @@ $("[data-change=tool]").click(function () {
 
 function detectTool() {
   var activeTool = $("[data-toolName]").attr("data-toolName").toString().toLowerCase();
-  if ($(".zoomicon").is(":visible")) {
+  if (!$(".zoomicon").is(".hide")) {
     $(".zoomicon").addClass("hide");
   }
 

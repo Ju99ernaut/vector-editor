@@ -8,8 +8,9 @@
     <meta name="description" content="A free open source vector design app">
     <meta name="author" content="Michael Schwartz">
     <link rel="stylesheet" href="libraries/mdl/material.css" />
-    <link rel="stylesheet" href="libraries/jqueryminicolors/jquery.minicolors.css" />
+    <link rel="stylesheet" href="https://unpkg.com/grapesjs/dist/css/grapes.min.css">
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://unpkg.com/grapesjs"></script>
 </head>
 
 <body>
@@ -166,12 +167,12 @@
                 </ul>
 
                 <!-- fillColor picker dropdown -->
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="menu-fill-color-picker" style="width: 214px; height: 200px; padding: 5px 7px;">
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="menu-fill-color-picker" style="width: 200px; height: 224px; padding: 5px;">
                     <div data-picker="fill"></div>
                 </ul>
 
                 <!-- strokeColor picker dropdown -->
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="menu-stroke-color-picker" style="width: 214px; height: 200px; padding: 5px 7px;">
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="menu-stroke-color-picker" style="width: 200px; height: 224px; padding: 5px;">
                     <div data-picker="stroke"></div>
                 </ul>
 
@@ -378,11 +379,13 @@
         <input type="file" accept="image/svg+xml" onchange="upload(event)">
     </div>
 
+    <script>
+        const editor = grapesjs.init({ headless: true });
+        const { $ } = editor;
+    </script>
+
     <script src="libraries/mdl/material.js"></script>
-    <script src="libraries/jquery/jquery.js"></script>
-    <script src="libraries/jqueryminicolors/jquery.minicolors.js"></script>
     <script src="libraries/fabricjs/fabric.min.js"></script>
-    <script src="libraries/tinycolor/tinycolor.js"></script>
     <script src="js/newproject.js"></script>
     <script src="js/save-svg.js"></script>
     <script src="js/grid.js"></script>

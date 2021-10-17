@@ -9,21 +9,22 @@
 $('#menu-fill-color-picker').click(function () {
   var activeObj = canvas.getActiveObject();
   if (activeObj) {
-    var defaultColor = tinycolor(activeObj.get('fill'));
-    defaultColor = defaultColor.toRgbString();
-    $('[data-picker=fill]').empty().append('<input type="text" class="picker fillpicker" value="' + defaultColor + '" data-opacty="1" style="color: #000; width: 207px;">');
+    $('[data-picker=fill]').empty().append('<input type="text" class="picker fillpicker" style="color: #000; width: 207px;">');
 
     // enable color picker
-    $('.fillpicker').minicolors({
-      format: "rgb",
-      opacity: true,
-      show: true,
-      position: "bottom left",
-      change: function (value, opacity) {
-        activeObj.set('fill', this.value);
+    $('.fillpicker').spectrum({
+      color: activeObj.get('fill'),
+      flat: true,
+      preferredFormat: "rgb",
+      showAlpha: true,
+      showInitial: true,
+      showInput: true,
+      showButtons: false,
+      change: function (color) {
+        activeObj.set('fill', color.toRgbString());
         canvas.renderAll();
       }
-    }).minicolors("show", true);
+    }).spectrum("show");
   } else {
     //alertify.error('No item selected');
     return false;
