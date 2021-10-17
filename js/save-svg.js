@@ -11,11 +11,8 @@ document.querySelector("[data-save=svg]").onclick = function () {
   // close navigation panel
   $('.mdl-layout__drawer').removeClass('is-visible');
   $('.mdl-layout__obfuscator').removeClass('is-visible');
-
-  var yourSVG = canvas.toSVG();
-
   console.log('====================================');
-  console.log(yourSVG);
+  console.log(canvas.toSVG());
   console.log('====================================');
   //saveAs(blob, projectname + ".svg");
 };

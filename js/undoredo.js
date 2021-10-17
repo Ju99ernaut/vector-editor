@@ -3,18 +3,18 @@ undo redo commandhistory with canvas
 */
 
 canvas.counter = 0;
-var newleft = 0;
+let newleft = 0;
 canvas.selection = false;
 
-var state = [];
-var mods = 0;
+const state = [];
+let mods = 0;
 canvas.on(
   'object:modified', function () {
-  updateModifications(true);
-},
+    updateModifications(true);
+  },
   'object:added', function () {
-  updateModifications(true);
-});
+    updateModifications(true);
+  });
 
 function updateModifications(savehistory) {
   if (savehistory === true) {

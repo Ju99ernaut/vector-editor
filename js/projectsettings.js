@@ -7,7 +7,7 @@
 */
 
 // variables
-var w, h;
+let _w, _h;
 
 // open/close project settings
 //TweenMax.set("[data-projectSettings]", {xPercent:-50, left:"50%", yPercent:-50, top:"50%", position: "absolute"});
@@ -28,14 +28,14 @@ var w, h;
 //});
 
 function updateCanvasSize() {
-  var cC = document.querySelector('[data-canvas]');
-  w = $("[data-project=width]")[0].value;
-  h = $("[data-project=height]")[0].value;
-  document.getElementById('canvas').width = w;
-  document.getElementById('canvas').height = h;
-  canvas.setDimensions({ width: w, height: h });
-  cC.style.marginLeft = '-' + parseInt(w / 2) + 'px';
-  cC.style.marginTop = '-' + parseInt(h / 2) + 'px';
+  const cC = document.querySelector('[data-canvas]');
+  _w = $("[data-project=width]")[0].value;
+  _h = $("[data-project=height]")[0].value;
+  document.getElementById('canvas').width = _w;
+  document.getElementById('canvas').height = _h;
+  canvas.setDimensions({ width: _w, height: _h });
+  cC.style.marginLeft = '-' + parseInt(_w / 2) + 'px';
+  cC.style.marginTop = '-' + parseInt(_h / 2) + 'px';
 }
 updateCanvasSize();
 

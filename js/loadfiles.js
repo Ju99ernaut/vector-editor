@@ -1,12 +1,12 @@
-var w, h;
+let w, h;
 
 function upload(e) {
   clearCanvas();
 
-  var fileType = e.target.files[0].type;
-  var url = URL.createObjectURL(e.target.files[0]);
+  const fileType = e.target.files[0].type;
+  const url = URL.createObjectURL(e.target.files[0]);
 
-  var img = new Image();
+  const img = new Image();
   img.onload = function () {
     w = this.width;
     h = this.height;
@@ -17,8 +17,7 @@ function upload(e) {
 
   if (fileType === 'image/svg+xml') { //check if svg
     fabric.loadSVGFromURL(url, function (objects, options) {
-      var svg = fabric.util.groupSVGElements(objects, options);
-      canvas.add(svg);
+      canvas.add(fabric.util.groupSVGElements(objects, options));
     });
   } else {
     alertify.error("Sorry that file type is not supported. .svg files only!");

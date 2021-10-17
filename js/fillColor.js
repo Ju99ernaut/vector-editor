@@ -7,7 +7,7 @@
 */
 
 $('#menu-fill-color-picker').click(function () {
-  var activeObj = canvas.getActiveObject();
+  const activeObj = canvas.getActiveObject();
   if (activeObj) {
     $('[data-picker=fill]').empty().append('<input type="text" class="picker fillpicker" style="color: #000; width: 207px;">');
 

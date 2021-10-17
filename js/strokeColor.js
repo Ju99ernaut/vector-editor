@@ -7,7 +7,7 @@
 */
 
 $('#menu-stroke-color-picker').click(function () {
-  var activeObj = canvas.getActiveObject();
+  const activeObj = canvas.getActiveObject();
   if (activeObj) {
     $('[data-picker=stroke]').empty().append('<input type="text" class="picker strokepicker" data-opacty="1" style="color: #000; width: 207px;">');
 

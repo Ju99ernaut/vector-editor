@@ -7,7 +7,7 @@
 */
 
 $('#menu-opacity').click(function () {
-  var activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
+  const activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
   if (activeObj) {
     opac.MaterialSlider.change(activeObj.get('opacity'));
   } else {
@@ -17,7 +17,7 @@ $('#menu-opacity').click(function () {
 });
 
 opac.onchange = function () {
-  var activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
+  const activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
   if (activeObj) {
     activeObj.set('opacity', this.value);
     canvas.renderAll();

@@ -7,7 +7,7 @@
 */
 
 $('#menu-stroke-width').click(function () {
-  var activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
+  const activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
   if (activeObj) {
     strokeW.MaterialSlider.change(activeObj.get('strokeWidth'))
   } else {
@@ -17,7 +17,7 @@ $('#menu-stroke-width').click(function () {
 });
 
 strokeW.onchange = function () {
-  var activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
+  const activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
   if (activeObj) {
     activeObj.set('strokeWidth', this.value);
     canvas.renderAll();
