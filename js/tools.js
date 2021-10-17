@@ -7,7 +7,7 @@
 */
 
 function initCanvas() {
-  $('.canvas-container').each(function(index) {
+  $('.canvas-container').each(function (index) {
 
     var canvasContainer = $(this)[0];
     var canvasObject = $("canvas", this)[0];
@@ -15,7 +15,7 @@ function initCanvas() {
     var imageOffsetX, imageOffsetY;
 
     function handleDragStart(e) {
-      [].forEach.call(images, function(img) {
+      [].forEach.call(images, function (img) {
         img.classList.remove('img_dragging');
       });
       this.classList.add('img_dragging');
@@ -66,13 +66,13 @@ function initCanvas() {
     }
 
     function handleDragEnd(e) {
-      [].forEach.call(images, function(img) {
+      [].forEach.call(images, function (img) {
         img.classList.remove('img_dragging');
       });
     }
 
     var images = document.querySelectorAll('.furniture img');
-    [].forEach.call(images, function(img) {
+    [].forEach.call(images, function (img) {
       img.addEventListener('dragstart', handleDragStart, false);
       img.addEventListener('dragend', handleDragEnd, false);
     });
@@ -105,12 +105,12 @@ canvas.on("object:added", function (e) {
   console.log('object:modified');
 
   if (action === true) {
-      state = [state[index2]];
-      list = [list[index2]];
+    state = [state[index2]];
+    list = [list[index2]];
 
-      action = false;
-      console.log(state);
-      index = 1;
+    action = false;
+    console.log(state);
+    index = 1;
   }
   object.saveState();
 
@@ -127,12 +127,12 @@ canvas.on("object:modified", function (e) {
   console.log('object:modified');
 
   if (action === true) {
-      state = [state[index2]];
-      list = [list[index2]];
+    state = [state[index2]];
+    list = [list[index2]];
 
-      action = false;
-      console.log(state);
-      index = 1;
+    action = false;
+    console.log(state);
+    index = 1;
   }
 
   object.saveState();
@@ -151,13 +151,13 @@ function copy() {
   // may want copy and paste on different moment.
   // and you do not want the changes happened
   // later to reflect on the copy.
-  canvas.getActiveObject().clone(function(cloned) {
+  canvas.getActiveObject().clone(function (cloned) {
     _clipboard = cloned;
   });
 }
 function paste() {
   // clone again, so you can do multiple copies.
-  _clipboard.clone(function(clonedObj) {
+  _clipboard.clone(function (clonedObj) {
     canvas.discardActiveObject();
     clonedObj.set({
       left: clonedObj.left + 10,
@@ -167,8 +167,8 @@ function paste() {
     if (clonedObj.type === 'activeSelection') {
       // active selection needs a reference to the canvas.
       clonedObj.canvas = canvas;
-      clonedObj.forEachObject(function(obj) {
-          canvas.add(obj);
+      clonedObj.forEachObject(function (obj) {
+        canvas.add(obj);
       });
       // this should solve the unselectability
       clonedObj.setCoords();
@@ -222,8 +222,8 @@ function rotateCW() {
   var activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
   if (activeObj) {
     var currentAngle = activeObj.get('angle')
-//    activeObj.set('originX', "center")
-//    activeObj.set('originY', "center")
+    //    activeObj.set('originX', "center")
+    //    activeObj.set('originY', "center")
     activeObj.set('angle', currentAngle + 90)
     activeObj.setCoords();
     canvas.renderAll();
@@ -233,8 +233,8 @@ function rotateCCW() {
   var activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
   if (activeObj) {
     var currentAngle = activeObj.get('angle')
-//    activeObj.set('originX', "center")
-//    activeObj.set('originY', "center")
+    //    activeObj.set('originX', "center")
+    //    activeObj.set('originY', "center")
     activeObj.set('angle', currentAngle - 90)
     activeObj.setCoords();
     canvas.renderAll();
@@ -254,12 +254,12 @@ function process_align(val, activeObj) {
   switch (val) {
     case 'left':
       activeObj.set({
-        left: activeObj.left - bound.left 
+        left: activeObj.left - bound.left
       });
       break;
     case 'right':
       activeObj.set({
-        left: canvas.width - bound.width/2
+        left: canvas.width - bound.width / 2
       });
       break;
     case 'top':
@@ -269,7 +269,7 @@ function process_align(val, activeObj) {
       break;
     case 'bottom':
       activeObj.set({
-        top: canvas.height - bound.height/2
+        top: canvas.height - bound.height / 2
       });
       break;
     case 'center':
@@ -294,7 +294,7 @@ function alignLeft() {
     activeObj.setCoords();
     canvas.renderAll();
   } else {
-    alertify.error('No item selected');
+    //alertify.error('No item selected');
     return false;
   }
 };
@@ -307,7 +307,7 @@ function alignCenter() {
     activeObj.setCoords();
     canvas.renderAll();
   } else {
-    alertify.error('No item selected');
+    //alertify.error('No item selected');
     return false;
   }
 }
@@ -320,7 +320,7 @@ function alignRight() {
     activeObj.setCoords();
     canvas.renderAll();
   } else {
-    alertify.error('No item selected');
+    //alertify.error('No item selected');
     return false;
   }
 }
@@ -333,7 +333,7 @@ function alignTop() {
     activeObj.setCoords();
     canvas.renderAll();
   } else {
-    alertify.error('No item selected');
+    //alertify.error('No item selected');
     return false;
   }
 }
@@ -346,7 +346,7 @@ function alignMiddle() {
     activeObj.setCoords();
     canvas.renderAll();
   } else {
-    alertify.error('No item selected');
+    //alertify.error('No item selected');
     return false;
   }
 }
@@ -359,20 +359,20 @@ function alignBottom() {
     activeObj.setCoords();
     canvas.renderAll();
   } else {
-    alertify.error('No item selected');
+    //alertify.error('No item selected');
     return false;
   }
 }
 
 var objectToSendBack;
-canvas.on("selection:created", function(event){
+canvas.on("selection:created", function (event) {
   objectToSendBack = event.target;
   $('.isselected').removeClass('hide');
 });
-canvas.on("selection:updated", function(event){
+canvas.on("selection:updated", function (event) {
   objectToSendBack = event.target;
 });
-canvas.on('selection:cleared', function() {
+canvas.on('selection:cleared', function () {
   $('.isselected').addClass('hide');
 });
 function sendBackwards() {
@@ -406,16 +406,16 @@ function bringToFront() {
     activeObj.setCoords();
     canvas.renderAll();
   }
-} 
+}
 function ungroup() {
   var activeObject = canvas.getActiveObject();
-  if(activeObject.type=="group"){
+  if (activeObject.type == "group") {
     var items = activeObject._objects;
     activeObject._restoreObjectsState();
     canvas.remove(activeObject);
-    for(var i = 0; i < items.length; i++) {
+    for (var i = 0; i < items.length; i++) {
       canvas.add(items[i]);
-      canvas.item(canvas.size()-1).hasControls = true;
+      canvas.item(canvas.size() - 1).hasControls = true;
     }
 
     canvas.renderAll();
@@ -423,7 +423,7 @@ function ungroup() {
 }
 
 // zooming and panning
-(function() {
+(function () {
   function renderVieportBorders() {
     var ctx = canvas.getContext();
 
@@ -447,15 +447,15 @@ function ungroup() {
 
     ctx.restore();
   }
-  canvas.on('object:selected', function(opt) {
-      var target = opt.target;
-      if (target._cacheCanvas) {
+  canvas.on('object:selected', function (opt) {
+    var target = opt.target;
+    if (target._cacheCanvas) {
 
-      }
+    }
   })
 
 
-  canvas.on('mouse:wheel', function(opt) {
+  canvas.on('mouse:wheel', function (opt) {
     var e = opt.e;
     if (!e.ctrlKey) {
       return;
@@ -469,13 +469,13 @@ function ungroup() {
   });
 
   var viewportLeft = 0,
-      viewportTop = 0,
-      mouseLeft,
-      mouseTop,
-      _drawSelection = canvas._drawSelection,
-      isDown = false;
+    viewportTop = 0,
+    mouseLeft,
+    mouseTop,
+    _drawSelection = canvas._drawSelection,
+    isDown = false;
 
-  canvas.on('mouse:down', function(options) {
+  canvas.on('mouse:down', function (options) {
     if (options.e.altKey) {
       isDown = true;
 
@@ -485,17 +485,17 @@ function ungroup() {
       mouseLeft = options.e.x;
       mouseTop = options.e.y;
       _drawSelection = canvas._drawSelection;
-      canvas._drawSelection = function(){ };
+      canvas._drawSelection = function () { };
       renderVieportBorders();
     }
   });
-  canvas.on('mouse:move', function(options) {
+  canvas.on('mouse:move', function (options) {
     if (options.e.altKey && isDown) {
       var currentMouseLeft = options.e.x;
       var currentMouseTop = options.e.y;
 
       var deltaLeft = currentMouseLeft - mouseLeft,
-          deltaTop = currentMouseTop - mouseTop;
+        deltaTop = currentMouseTop - mouseTop;
 
       canvas.viewportTransform[4] = viewportLeft + deltaLeft;
       canvas.viewportTransform[5] = viewportTop + deltaTop;
@@ -504,7 +504,7 @@ function ungroup() {
       renderVieportBorders();
     }
   });
-  canvas.on('mouse:up', function() {
+  canvas.on('mouse:up', function () {
     canvas._drawSelection = _drawSelection;
     isDown = false;
   });
@@ -513,23 +513,23 @@ function ungroup() {
 // touch gestures
 var info = document.createTextNode("p");
 canvas.on({
-  'touch:gesture': function() {
+  'touch:gesture': function () {
     var text = document.createTextNode(' Gesture ');
     info.insertBefore(text, info.firstChild);
   },
-  'touch:drag': function() {
+  'touch:drag': function () {
     var text = document.createTextNode(' Dragging ');
     info.insertBefore(text, info.firstChild);
   },
-  'touch:orientation': function() {
+  'touch:orientation': function () {
     var text = document.createTextNode(' Orientation ');
     info.insertBefore(text, info.firstChild);
   },
-  'touch:shake': function() {
+  'touch:shake': function () {
     var text = document.createTextNode(' Shaking ');
     info.insertBefore(text, info.firstChild);
   },
-  'touch:longpress': function() {
+  'touch:longpress': function () {
     var text = document.createTextNode(' Longpress ');
     info.insertBefore(text, info.firstChild);
   }
@@ -540,7 +540,7 @@ var line, isDown;
 function drawLine() {
   removeEvents();
   changeObjectSelection(false);
-  canvas.on('mouse:down', function(o) {
+  canvas.on('mouse:down', function (o) {
     isDown = true;
     var pointer = canvas.getPointer(o.e);
     var points = [pointer.x, pointer.y, pointer.x, pointer.y];
@@ -554,7 +554,7 @@ function drawLine() {
     });
     canvas.add(line);
   });
-  canvas.on('mouse:move', function(o) {
+  canvas.on('mouse:move', function (o) {
     if (!isDown) return;
     var pointer = canvas.getPointer(o.e);
     line.set({
@@ -563,7 +563,7 @@ function drawLine() {
     });
     canvas.renderAll();
   });
-  canvas.on('mouse:up', function(o) {
+  canvas.on('mouse:up', function (o) {
     isDown = false;
     line.setCoords();
   });
@@ -573,7 +573,7 @@ function drawRect() {
   removeEvents();
   changeObjectSelection(false);
 
-  canvas.on('mouse:down', function(o) {
+  canvas.on('mouse:down', function (o) {
     isDown = true;
     var pointer = canvas.getPointer(o.e);
     origX = pointer.x;
@@ -594,7 +594,7 @@ function drawRect() {
     });
     canvas.add(rect);
   });
-  canvas.on('mouse:move', function(o) {
+  canvas.on('mouse:move', function (o) {
     if (!isDown) return;
     var pointer = canvas.getPointer(o.e);
 
@@ -619,7 +619,7 @@ function drawRect() {
 
     canvas.renderAll();
   });
-  canvas.on('mouse:up', function(o) {
+  canvas.on('mouse:up', function (o) {
     isDown = false;
     rect.setCoords();
   });
@@ -628,7 +628,7 @@ function drawCircle() {
   var circle, isDown, origX, origY;
   removeEvents();
   changeObjectSelection(false);
-  canvas.on('mouse:down', function(o) {
+  canvas.on('mouse:down', function (o) {
     isDown = true;
     var pointer = canvas.getPointer(o.e);
     origX = pointer.x;
@@ -647,7 +647,7 @@ function drawCircle() {
     });
     canvas.add(circle);
   });
-  canvas.on('mouse:move', function(o) {
+  canvas.on('mouse:move', function (o) {
     if (!isDown) return;
     var pointer = canvas.getPointer(o.e);
     circle.set({
@@ -655,7 +655,7 @@ function drawCircle() {
     });
     canvas.renderAll();
   });
-  canvas.on('mouse:up', function(o) {
+  canvas.on('mouse:up', function (o) {
     isDown = false;
     circle.setCoords();
   });
@@ -664,7 +664,7 @@ function drawEllipse() {
   var ellipse, isDown, origX, origY;
   removeEvents();
   changeObjectSelection(false);
-  canvas.on('mouse:down', function(o) {
+  canvas.on('mouse:down', function (o) {
     isDown = true;
     var pointer = canvas.getPointer(o.e);
     origX = pointer.x;
@@ -685,32 +685,32 @@ function drawEllipse() {
     });
     canvas.add(ellipse);
   });
-  canvas.on('mouse:move', function(o){
-      if (!isDown) return;
-      var pointer = canvas.getPointer(o.e);
-      var rx = Math.abs(origX - pointer.x)/2;
-      var ry = Math.abs(origY - pointer.y)/2;
-      if (rx > ellipse.strokeWidth) {
-        rx -= ellipse.strokeWidth/2
-      }
-       if (ry > ellipse.strokeWidth) {
-        ry -= ellipse.strokeWidth/2
-      }
-      ellipse.set({ rx: rx, ry: ry});
+  canvas.on('mouse:move', function (o) {
+    if (!isDown) return;
+    var pointer = canvas.getPointer(o.e);
+    var rx = Math.abs(origX - pointer.x) / 2;
+    var ry = Math.abs(origY - pointer.y) / 2;
+    if (rx > ellipse.strokeWidth) {
+      rx -= ellipse.strokeWidth / 2
+    }
+    if (ry > ellipse.strokeWidth) {
+      ry -= ellipse.strokeWidth / 2
+    }
+    ellipse.set({ rx: rx, ry: ry });
 
-      if(origX>pointer.x){
-          ellipse.set({originX: 'right' });
-      } else {
-          ellipse.set({originX: 'left' });
-      }
-      if(origY>pointer.y){
-          ellipse.set({originY: 'bottom'  });
-      } else {
-          ellipse.set({originY: 'top'  });
-      }
-      canvas.renderAll();
+    if (origX > pointer.x) {
+      ellipse.set({ originX: 'right' });
+    } else {
+      ellipse.set({ originX: 'left' });
+    }
+    if (origY > pointer.y) {
+      ellipse.set({ originY: 'bottom' });
+    } else {
+      ellipse.set({ originY: 'top' });
+    }
+    canvas.renderAll();
   });
-  canvas.on('mouse:up', function(o){
+  canvas.on('mouse:up', function (o) {
     isDown = false;
     ellipse.setCoords();
   });
@@ -719,7 +719,7 @@ function drawText() {
   var text, isDown, origX, origY;
   removeEvents();
   changeObjectSelection(false);
-  canvas.on('mouse:down', function(o) {
+  canvas.on('mouse:down', function (o) {
     isDown = true;
     var pointer = canvas.getPointer(o.e);
     origX = pointer.x;
@@ -740,7 +740,7 @@ function drawText() {
     canvas.add(text);
     canvas.renderAll();
   });
-  canvas.on('mouse:up', function(o){
+  canvas.on('mouse:up', function (o) {
     isDown = false;
     text.setCoords();
   });
@@ -749,7 +749,7 @@ function drawTriangle() {
   var triangle, isDown, origX, origY;
   removeEvents();
   changeObjectSelection(false);
-  canvas.on('mouse:down', function(o) {
+  canvas.on('mouse:down', function (o) {
     isDown = true;
     var pointer = canvas.getPointer(o.e);
     origX = pointer.x;
@@ -770,7 +770,7 @@ function drawTriangle() {
     });
     canvas.add(triangle);
   });
-  canvas.on('mouse:move', function(o) {
+  canvas.on('mouse:move', function (o) {
     if (!isDown) return;
     var pointer = canvas.getPointer(o.e);
 
@@ -795,13 +795,13 @@ function drawTriangle() {
 
     canvas.renderAll();
   });
-  canvas.on('mouse:up', function(o) {
+  canvas.on('mouse:up', function (o) {
     isDown = false;
     triangle.setCoords();
   });
 
 }
-function enableFreeDrawing(){
+function enableFreeDrawing() {
   removeEvents();
   canvas.isDrawingMode = true;
 }
@@ -830,108 +830,108 @@ function removeEvents() {
 }
 
 // toggle properties for selected item
-$('[data-properties=icon]').click(function() {
+$('[data-properties=icon]').click(function () {
   $('[data-menu=icons]').toggle();
   $('[data-properties=group]').toggle();
 });
 
 // change tool
-$("[data-change=tool]").click(function() {
-  var clickedTool = $(this).find(".material-icons");
-  var elmChange = $("[data-active=tool] .material-icons");
-  
-  if (clickedTool.text() === "format_shapes") {
+$("[data-change=tool]").click(function () {
+  var clickedTool = $(this).find("span");
+  var elmChange = $("[data-active=tool]");
+
+  if (clickedTool.text().trim() === "Pointer") {
     // show tool on menubar
-    elmChange.text(clickedTool.text()).attr("style", "");
-    
+    elmChange.html($(this).find('svg')[0].outerHTML).attr("style", "");
+
     // make tool active menubar
     $("[data-toolName]").attr("data-toolName", $(this).find("span").text().trim());
 
     // initiate tool
     detectTool();
-  } else if (clickedTool.text() === "touch_app") {
+  } else if (clickedTool.text().trim() === "touch_app") {
     // show tool on menubar
-    elmChange.text(clickedTool.text()).attr("style", "");
-    
+    elmChange.html($(this).find('svg')[0].outerHTML).attr("style", "");
+
     // make tool active menubar
     $("[data-toolName]").attr("data-toolName", $(this).find("span").text().trim());
 
     // initiate tool
     detectTool();
-  } else if (clickedTool.text() === "brush") {
+  } else if (clickedTool.text().trim() === "Brush") {
     // show tool on menubar
-    elmChange.text("brush").attr("style", "");
-    
+    elmChange.html($(this).find('svg')[0].outerHTML).attr("style", "");
+
     // make tool active menubar
     $("[data-toolName]").attr("data-toolName", $(this).find("span").text().trim());
 
     // initiate tool
     detectTool();
-  } else if (clickedTool.text() === "timeline") {
+  } else if (clickedTool.text().trim() === "timeline") {
     // show tool on menubar
-    elmChange.text(clickedTool.text()).attr("style", "");
-    
+    elmChange.html($(this).find('svg')[0].outerHTML).attr("style", "");
+
     // make tool active menubar
     $("[data-toolName]").attr("data-toolName", $(this).find("span").text().trim());
 
     // initiate tool
     detectTool();
-  } else if (clickedTool.text() === "linear_scale") {
+  } else if (clickedTool.text().trim() === "Line") {
     // show tool on menubar
-    elmChange.text("linear_scale").attr("style", "");
-    
+    elmChange.html($(this).find('svg')[0].outerHTML).attr("style", "");
+
     // make tool active menubar
     $("[data-toolName]").attr("data-toolName", $(this).find("span").text().trim());
 
     // initiate tool
     detectTool();
-  } else if (clickedTool.text() === "stop") {
+  } else if (clickedTool.text().trim() === "Rectangle") {
     // show tool on menubar
-    elmChange.text(clickedTool.text()).attr("style", "transform: scale(1.6) translate(-7px, -7px);");
-    
+    elmChange.html($(this).find('svg')[0].outerHTML).attr("style", "");
+
     // make tool active menubar
     $("[data-toolName]").attr("data-toolName", $(this).find("span").text().trim());
 
     // initiate tool
     detectTool();
-  } else if (clickedTool.text() === "circle") {
+  } else if (clickedTool.text().trim() === "Ellipse") {
     // show tool on menubar
-    elmChange.text(clickedTool.text()).attr("style", "");
-    
+    elmChange.html($(this).find('svg')[0].outerHTML).attr("style", "");
+
     // make tool active menubar
     $("[data-toolName]").attr("data-toolName", $(this).find("span").text().trim());
 
     // initiate tool
     detectTool();
-  } else if (clickedTool.text() === "title") {
+  } else if (clickedTool.text().trim() === "Text") {
     // show tool on menubar
-    elmChange.text(clickedTool.text()).attr("style", "");
-    
+    elmChange.html($(this).find('svg')[0].outerHTML).attr("style", "");
+
     // make tool active menubar
     $("[data-toolName]").attr("data-toolName", $(this).find("span").text().trim());
 
     // initiate tool
     detectTool();
-  } else if (clickedTool.text() === "search") {
+  } else if (clickedTool.text().trim() === "Zoom") {
     // show tool on menubar
-    elmChange.text("search").attr("style", "");
-    
+    elmChange.html($(this).find('svg')[0].outerHTML).attr("style", "");
+
     // make tool active menubar
     $("[data-toolName]").attr("data-toolName", $(this).find("span").text().trim());
 
     // initiate tool
     detectTool();
-  } else if (clickedTool.text() === "pan_tool") {
+  } else if (clickedTool.text().trim() === "pan_tool") {
     // show tool on menubar
-    elmChange.text(clickedTool.text()).attr("style", "");
-    
+    elmChange.html($(this).find('svg')[0].outerHTML).attr("style", "");
+
     // make tool active menubar
     $("[data-toolName]").attr("data-toolName", $(this).find("span").text().trim());
 
     // initiate tool
     detectTool();
   } else {
-    alertify.error("Error 001: Sorry we're unable to change your tool");
+    //alertify.error("Error 001: Sorry we're unable to change your tool");
     return false;
   }
 });
@@ -941,76 +941,76 @@ function detectTool() {
   if ($(".zoomicon").is(":visible")) {
     $(".zoomicon").addClass("hide");
   }
-  
+
   if (activeTool === "pointer") {
     enableSelection();
     return false;
-  } else 
+  } else
     if (activeTool === "line") {
       drawLine();
       return false;
-  } else 
-    if (activeTool === "rectangle") {
-      drawRect();
-      return false;
-  } else 
-    if (activeTool === "ellipse") {
-      drawEllipse();
-      return false;
-  } else 
-    if (activeTool === "brush") {
-      enableFreeDrawing();
-      return false;
-  } else 
-    if (activeTool === "text") {
-      drawText();
-      return false;
-  } else 
-    if (activeTool === "zoom") {
-    unselect();
-    
-    var incriment = 1;
-    var zoomint = $('#zoomint');
-    var cC = document.querySelector('[data-canvas]');
-    $(".zoomicon").removeClass("hide").on('mousedown touchstart', function() {
-      var incriment   = 1;
-      var zoomint     = $('#zoomint');
-      var addInc      = setInterval(addTimer, 100);
-      var subtractInc = setInterval(subtractTimer, 100);
-      function addTimer() {
-        zoomint[0].stepUp(incriment);
-        cC.style.transform = 'scale('+ zoomint[0].value +')';
-      }
-      function subtractTimer() {
-        zoomint[0].stepDown(incriment);
-        canvas.setZoom(zoomint[0].value)
-        cC.style.transform = 'scale('+ zoomint[0].value +')';
-      }
+    } else
+      if (activeTool === "rectangle") {
+        drawRect();
+        return false;
+      } else
+        if (activeTool === "ellipse") {
+          drawEllipse();
+          return false;
+        } else
+          if (activeTool === "brush") {
+            enableFreeDrawing();
+            return false;
+          } else
+            if (activeTool === "text") {
+              drawText();
+              return false;
+            } else
+              if (activeTool === "zoom") {
+                unselect();
 
-      if ($(this).hasClass("zoomin")) {
-        addTimer();
-        clearInterval(subtractInc);
-      } else if ($(this).hasClass("zoomout")) {
-        subtractTimer();
-        clearInterval(addInc);
-      } else {
-        clearInterval(addInc);
-        clearInterval(subtractInc);
-        incriment = 1;
-        zoomint[0].value = incriment;
-        cC.style.transform = '';
-        cC.style.marginLeft = '-' + parseInt(w / 2) + 'px';
-        cC.style.marginTop = '-' + parseInt(h / 2) + 'px';
-      }
+                var incriment = 1;
+                var zoomint = $('#zoomint');
+                var cC = document.querySelector('[data-canvas]');
+                $(".zoomicon").removeClass("hide").on('mousedown touchstart', function () {
+                  var incriment = 1;
+                  var zoomint = $('#zoomint');
+                  var addInc = setInterval(addTimer, 100);
+                  var subtractInc = setInterval(subtractTimer, 100);
+                  function addTimer() {
+                    zoomint[0].stepUp(incriment);
+                    cC.style.transform = 'scale(' + zoomint[0].value + ')';
+                  }
+                  function subtractTimer() {
+                    zoomint[0].stepDown(incriment);
+                    canvas.setZoom(zoomint[0].value)
+                    cC.style.transform = 'scale(' + zoomint[0].value + ')';
+                  }
 
-      $(this).on('mouseup mouseout touchend', function() {
-        clearInterval(addInc);
-        clearInterval(subtractInc);
-      });
-    });
-  } else {
-    return false;
-  }
+                  if ($(this).hasClass("zoomin")) {
+                    addTimer();
+                    clearInterval(subtractInc);
+                  } else if ($(this).hasClass("zoomout")) {
+                    subtractTimer();
+                    clearInterval(addInc);
+                  } else {
+                    clearInterval(addInc);
+                    clearInterval(subtractInc);
+                    incriment = 1;
+                    zoomint[0].value = incriment;
+                    cC.style.transform = '';
+                    cC.style.marginLeft = '-' + parseInt(w / 2) + 'px';
+                    cC.style.marginTop = '-' + parseInt(h / 2) + 'px';
+                  }
+
+                  $(this).on('mouseup mouseout touchend', function () {
+                    clearInterval(addInc);
+                    clearInterval(subtractInc);
+                  });
+                });
+              } else {
+                return false;
+              }
   return false;
 };
 detectTool();

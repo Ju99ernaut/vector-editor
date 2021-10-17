@@ -6,23 +6,23 @@
   This is vector-editor (https://michaelsboost.github.io/vector-editor/), A free open source vector design app
 */
 
-$('#menu-opacity').click(function() {
+$('#menu-opacity').click(function () {
   var activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
   if (activeObj) {
     opac.MaterialSlider.change(activeObj.get('opacity'));
   } else {
-    alertify.error('No item selected');
+    //alertify.error('No item selected');
     return false;
   }
 });
 
-opac.onchange = function() {
+opac.onchange = function () {
   var activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
   if (activeObj) {
     activeObj.set('opacity', this.value);
     canvas.renderAll();
   } else {
-    alertify.error('No item selected');
+    //alertify.error('No item selected');
     return false;
   }
 };

@@ -7,30 +7,30 @@
 */
 
 // toggle grid
-document.querySelector("[data-toggle=grid]").onclick = function() {
-  var elm = document.querySelector("[data-toggle=grid] .material-icons");
+document.querySelector("[data-toggle=grid]").onclick = function () {
+  var elm = document.querySelector("[data-toggle=grid]");
 
-//  if (elm.textContent === "grid_on") {
-//    var svg = document.querySelector("[data-grab=svg] canvas");
-//    svg.style.background = "none";
-//
-//    elm.textContent = "grid_off";
-//  } else {
-//    var svg = document.querySelector("[data-grab=svg] canvas");
-//    svg.style.backgroundImage = "url('images/grid-transparent.png')";
-//
-//    elm.textContent = "grid_on";
-//  }
-  
-  if (elm.textContent === "grid_on") {
+  //  if (elm.textContent === "grid_on") {
+  //    var svg = document.querySelector("[data-grab=svg] canvas");
+  //    svg.style.background = "none";
+  //
+  //    elm.textContent = "grid_off";
+  //  } else {
+  //    var svg = document.querySelector("[data-grab=svg] canvas");
+  //    svg.style.backgroundImage = "url('images/grid-transparent.png')";
+  //
+  //    elm.textContent = "grid_on";
+  //  }
+
+  if (elm.getAttribute("data-grid") === "on") {
     var svg = document.querySelector("[data-grab=svg] canvas");
     svg.style.background = "none";
 
-    elm.textContent = "grid_off";
+    elm.setAttribute("data-grid", "off");
   } else {
     var svg = document.querySelector("[data-grab=svg] canvas");
     svg.style.backgroundImage = "url('images/grid-transparent.png')";
 
-    elm.textContent = "grid_on";
+    elm.setAttribute("data-grid", "on");
   }
 };

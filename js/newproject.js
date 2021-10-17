@@ -7,19 +7,21 @@
 */
 
 // initialize new project
-document.querySelector("[data-new=project]").onclick = function() {
+document.querySelector("[data-new=project]").onclick = function () {
   // close navigation panel
   $('.mdl-layout__drawer').removeClass('is-visible');
   $('.mdl-layout__obfuscator').removeClass('is-visible');
-  
-  swal({
-    title: 'Are you sure you want to reload?',
-    text: "You will loose all your work and you won't be able to revert this!",
-    type: 'warning',
-    showCancelButton: true
-  }).then((result) => {
-    if (result.value) {
-      clearCanvas();
-    }
-  })
+
+  let conf = confirm('Are you sure you want to reload?');
+  if (conf) clearCanvas();
+  //swal({
+  //  title: 'Are you sure you want to reload?',
+  //  text: "You will loose all your work and you won't be able to revert this!",
+  //  type: 'warning',
+  //  showCancelButton: true
+  //}).then((result) => {
+  //  if (result.value) {
+  //    clearCanvas();
+  //  }
+  //})
 };

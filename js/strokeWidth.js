@@ -6,23 +6,23 @@
   This is vector-editor (https://michaelsboost.github.io/vector-editor/), A free open source vector design app
 */
 
-$('#menu-stroke-width').click(function() {
+$('#menu-stroke-width').click(function () {
   var activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
   if (activeObj) {
     strokeW.MaterialSlider.change(activeObj.get('strokeWidth'))
   } else {
-    alertify.error('No item selected');
+    //alertify.error('No item selected');
     return false;
   }
 });
 
-strokeW.onchange = function() {
+strokeW.onchange = function () {
   var activeObj = canvas.getActiveObject() || canvas.getActiveGroup();
   if (activeObj) {
     activeObj.set('strokeWidth', this.value);
     canvas.renderAll();
   } else {
-    alertify.error('No item selected');
+    //alertify.error('No item selected');
     return false;
   }
 };
