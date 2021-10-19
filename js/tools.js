@@ -94,7 +94,7 @@ fabric.Object.prototype.set({
 
 let current;
 const list = [];
-const stateTools = [];
+const state = [];
 let index = 0;
 let index2 = 0;
 let action = false;
@@ -105,17 +105,17 @@ canvas.on("object:added", function (e) {
   console.log('object:modified');
 
   if (action === true) {
-    stateTools = [stateTools[index2]];
+    state = [state[index2]];
     list = [list[index2]];
 
     action = false;
-    console.log(stateTools);
+    console.log(state);
     index = 1;
   }
   object.saveState();
 
   console.log(object.originalState);
-  stateTools[index] = JSON.stringify(object.originalState);
+  state[index] = JSON.stringify(object.originalState);
   list[index] = object;
   index++;
   index2 = index - 1;
@@ -127,22 +127,22 @@ canvas.on("object:modified", function (e) {
   console.log('object:modified');
 
   if (action === true) {
-    stateTools = [stateTools[index2]];
+    state = [state[index2]];
     list = [list[index2]];
 
     action = false;
-    console.log(stateTools);
+    console.log(state);
     index = 1;
   }
 
   object.saveState();
 
-  stateTools[index] = JSON.stringify(object.originalState);
+  state[index] = JSON.stringify(object.originalState);
   list[index] = object;
   index++;
   index2 = index - 1;
 
-  console.log(stateTools);
+  console.log(state);
   refresh = true;
 });
 

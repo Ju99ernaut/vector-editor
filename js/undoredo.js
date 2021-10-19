@@ -6,7 +6,6 @@ canvas.counter = 0;
 let newleft = 0;
 canvas.selection = false;
 
-const state = [];
 let mods = 0;
 canvas.on(
   'object:modified', function () {
@@ -23,7 +22,7 @@ function updateModifications(savehistory) {
   }
 }
 
-undo = function undo() {
+function undo() {
   if (mods < state.length) {
     canvas.clear().renderAll();
     canvas.loadFromJSON(state[state.length - 1 - mods - 1]);
@@ -36,7 +35,7 @@ undo = function undo() {
   }
 }
 
-redo = function redo() {
+function redo() {
   if (mods > 0) {
     canvas.clear().renderAll();
     canvas.loadFromJSON(state[state.length - 1 - mods + 1]);
@@ -49,7 +48,7 @@ redo = function redo() {
   }
 }
 
-clearCanvas = function clearCanvas() {
+function clearCanvas() {
   canvas.clear().renderAll();
   newleft = 0;
 }
