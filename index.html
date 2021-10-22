@@ -42,7 +42,7 @@
                         </svg>
                     </button>
                     <button class="mdl-button mdl-js-button mdl-button--icon" title="Redo" onclick="redo()">
-                        <svg width="18" height="18" fill="grey" class="bi bi-arrow-90deg-right" viewBox="0 0 16 16">
+                        <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M14.854 4.854a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 4H3.5A2.5 2.5 0 0 0 1 6.5v8a.5.5 0 0 0 1 0v-8A1.5 1.5 0 0 1 3.5 5h9.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4z" />
                         </svg>
                     </button>
@@ -71,8 +71,54 @@
                             </svg>
                         </button>
                         <button id="menu-stroke-width" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Change Stroke Width">
-                            <svg width="18" height="18" fill="grey" class="bi bi-border-width" viewBox="0 0 16 16">
+                            <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
                                 <path d="M0 3.5A.5.5 0 0 1 .5 3h15a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-2zm0 5A.5.5 0 0 1 .5 8h15a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1zm0 4a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z" />
+                            </svg>
+                        </button>
+                        <button id="menu-shadow-color-picker" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Shadow Color">
+                            <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
+                                <path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
+                            </svg>
+                        </button>
+                        <button id="menu-shadow-blur" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Shadow Blur">
+                            <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
+                                <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm5 10v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2v5a2 2 0 0 1-2 2H5zm6-8V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2V6a2 2 0 0 1 2-2h5z" />
+                            </svg>
+                        </button>
+                        <button id="menu-shadow-offsetX" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Shadow Offset-X">
+                            <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                            </svg>
+                        </button>
+                        <button id="menu-shadow-offsetY" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Shadow Offset-Y">
+                            <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+                            </svg>
+                        </button>
+                        <button class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Clear Shadow" onclick="clearShadow()">
+                            <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                        </button>
+                        <button id="menu-text-bold" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Bold" onclick="bolden()">
+                            <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
+                                <path d="M8.21 13c2.106 0 3.412-1.087 3.412-2.823 0-1.306-.984-2.283-2.324-2.386v-.055a2.176 2.176 0 0 0 1.852-2.14c0-1.51-1.162-2.46-3.014-2.46H3.843V13H8.21zM5.908 4.674h1.696c.963 0 1.517.451 1.517 1.244 0 .834-.629 1.32-1.73 1.32H5.908V4.673zm0 6.788V8.598h1.73c1.217 0 1.88.492 1.88 1.415 0 .943-.643 1.449-1.832 1.449H5.907z" />
+                            </svg>
+                        </button>
+                        <button id="menu-text-italic" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Italic" onclick="italics()">
+                            <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
+                                <path d="M7.991 11.674 9.53 4.455c.123-.595.246-.71 1.347-.807l.11-.52H7.211l-.11.52c1.06.096 1.128.212 1.005.807L6.57 11.674c-.123.595-.246.71-1.346.806l-.11.52h3.774l.11-.52c-1.06-.095-1.129-.211-1.006-.806z" />
+                            </svg>
+                        </button>
+                        <button id="menu-text-underline" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Underline" onclick="underline()">
+                            <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
+                                <path d="M5.313 3.136h-1.23V9.54c0 2.105 1.47 3.623 3.917 3.623s3.917-1.518 3.917-3.623V3.136h-1.23v6.323c0 1.49-.978 2.57-2.687 2.57-1.709 0-2.687-1.08-2.687-2.57V3.136zM12.5 15h-9v-1h9v1z" />
+                            </svg>
+                        </button>
+                        <button id="menu-text-strike" class="mdl-button mdl-js-button mdl-button--icon isselected hide" title="Strike Through" onclick="strikeThrough()">
+                            <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
+                                <path d="M6.333 5.686c0 .31.083.581.27.814H5.166a2.776 2.776 0 0 1-.099-.76c0-1.627 1.436-2.768 3.48-2.768 1.969 0 3.39 1.175 3.445 2.85h-1.23c-.11-1.08-.964-1.743-2.25-1.743-1.23 0-2.18.602-2.18 1.607zm2.194 7.478c-2.153 0-3.589-1.107-3.705-2.81h1.23c.144 1.06 1.129 1.703 2.544 1.703 1.34 0 2.31-.705 2.31-1.675 0-.827-.547-1.374-1.914-1.675L8.046 8.5H1v-1h14v1h-3.504c.468.437.675.994.675 1.697 0 1.826-1.436 2.967-3.644 2.967z" />
                             </svg>
                         </button>
                     </span>
@@ -183,6 +229,32 @@
                     </p>
                 </ul>
 
+                <!-- shadowColor picker dropdown -->
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="menu-shadow-color-picker" style="width: 200px; height: 224px; padding: 5px;">
+                    <div data-picker="shadow"></div>
+                </ul>
+
+                <!-- shadowBlur dropdown -->
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="menu-shadow-blur" style="width: 214px; padding: 5px 7px;">
+                    <p style="width:200px; margin: 8px 0;">
+                        <input class="mdl-slider mdl-js-slider" type="range" id="shadowBlur" min="0" max="100" value="1" step="1">
+                    </p>
+                </ul>
+
+                <!-- shadowOffsetX dropdown -->
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="menu-shadow-offsetX" style="width: 214px; padding: 5px 7px;">
+                    <p style="width:200px; margin: 8px 0;">
+                        <input class="mdl-slider mdl-js-slider" type="range" id="shadowOffsetX" min="-100" max="100" value="1" step="1">
+                    </p>
+                </ul>
+
+                <!-- shadowOffsetY dropdown -->
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="menu-shadow-offsetY" style="width: 214px; padding: 5px 7px;">
+                    <p style="width:200px; margin: 8px 0;">
+                        <input class="mdl-slider mdl-js-slider" type="range" id="shadowOffsetY" min="-100" max="100" value="1" step="1">
+                    </p>
+                </ul>
+
                 <!-- Tools -->
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="usertools">
                     <li class="mdl-menu__item" data-change="tool">
@@ -207,6 +279,14 @@
                         </svg>
                         <span>
                             Line
+                        </span>
+                    </li>
+                    <li class="mdl-menu__item" data-change="tool">
+                        <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
+                            <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                        </svg>
+                        <span>
+                            Triangle
                         </span>
                     </li>
                     <li class="mdl-menu__item" data-change="tool">
@@ -320,14 +400,13 @@
                     Load File
                 </span>
             </li>
-            <li class="mdl-menu__item" data-insert="svg">
+            <li class="mdl-menu__item" data-add="svg">
                 <svg width="18" height="18" fill="grey" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
-                    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                 </svg>
                 <span>
-                    Insert
+                    Add SVG
                 </span>
             </li>
             <li class="mdl-menu__item" data-save="svg">
@@ -389,6 +468,10 @@
         <input type="file" accept="image/svg+xml" onchange="upload(event)">
     </div>
 
+    <div class="hide">
+        <input class="add" type="file" accept="image/svg+xml" onchange="addSvg(event)">
+    </div>
+
     <script>
         const editor = grapesjs.init({ headless: true });
         const { $ } = editor;
@@ -399,12 +482,13 @@
     <script src="js/newproject.js"></script>
     <script src="js/save-svg.js"></script>
     <script src="js/grid.js"></script>
-    <script src="js/layers.js"></script>
     <script src="js/tools.js"></script>
     <script src="js/opacity.js"></script>
     <script src="js/fillColor.js"></script>
     <script src="js/strokeColor.js"></script>
     <script src="js/strokeWidth.js"></script>
+    <script src="js/text.js"></script>
+    <script src="js/shadow.js"></script>
     <script src="js/undoredo.js"></script>
     <script src="js/loadfiles.js"></script>
     <script src="js/projectsettings.js"></script>
