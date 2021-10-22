@@ -1,45 +1,21 @@
 let w, h;
 
-function insertSvg(e) {
+function addSvg(e) {
   const fileType = e.target.files[0].type;
   const url = URL.createObjectURL(e.target.files[0]);
-
-  const img = new Image();
-  img.onload = function () {
-    w = this.width;
-    h = this.height;
-    $("[data-project=width]").val(w).trigger('keyup');
-    $("[data-project=height]").val(h).trigger('keyup');
-  }
-  img.src = url;
 
   if (fileType === 'image/svg+xml') { //check if svg
     fabric.loadSVGFromURL(url, function (objects, options) {
       const obj = fabric.util.groupSVGElements(objects, options);
-
-      let scaleFactor = 1;
-      if (obj.width > obj.height) {
-        scaleFactor = (canvas.width / 3) / obj.width;
-      } else {
-        scaleFactor = (canvas.height / 3) / obj.height;
-      }
-
       obj.set({
-        top: Math.floor(canvas.height / 5),
-        left: Math.floor(canvas.width / 5),
-        scaleY: scaleFactor,
-        scaleX: scaleFactor
+        left: 5,
+        top: 5,
+        angle: 0,
+        originX: 'left',
+        originY: 'top'
       });
-
       canvas.add(obj);
-      obj.perPixelTargetFind = true;
-      obj.targetFindTolerance = 4;
-      canvas.discardActiveObject();
-      canvas.setActiveObject(obj);
       canvas.renderAll();
-
-      // Push the canvas state to history
-      canvas.trigger("object:statechange");
     });
   } else {
     //alertify.error("Sorry that file type is not supported. .svg files only!");
@@ -87,7 +63,6 @@ document.querySelector("[data-load=svg]").onclick = function () {
   //})
 };
 
-document.querySelector("[data-insert=svg]").onclick = function () {
-  let conf = confirm('Are you sure you want to load this file?');
-  if (conf) document.querySelector("input[type=file]").click();
-}
+document.querySelector("[data-add=svg]").onclick = function () {
+  document.querySelector("input[type=file].add").click();
+};
