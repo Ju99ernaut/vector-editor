@@ -724,7 +724,7 @@ function drawText() {
     const pointer = canvas.getPointer(o.e);
     origX = pointer.x;
     origY = pointer.y;
-    text = new fabric.Text("Your text here", {
+    text = new fabric.IText("Your text here", {
       left: pointer.x,
       top: pointer.y,
       fontFamily: 'Open Sans',
@@ -799,7 +799,6 @@ function drawTriangle() {
     isDown = false;
     triangle.setCoords();
   });
-
 }
 function enableFreeDrawing() {
   removeEvents();
@@ -892,6 +891,15 @@ $("[data-change=tool]").click(function () {
 
     // initiate tool
     detectTool();
+  } else if (clickedTool.text().trim() === "Triangle") {
+    // show tool on menubar
+    elmChange.html($(this).find('svg')[0].outerHTML).attr("style", "");
+
+    // make tool active menubar
+    $("[data-toolName]").attr("data-toolName", $(this).find("span").text().trim());
+
+    // initiate tool
+    detectTool();
   } else if (clickedTool.text().trim() === "Rectangle") {
     // show tool on menubar
     elmChange.html($(this).find('svg')[0].outerHTML).attr("style", "");
@@ -957,67 +965,71 @@ function detectTool() {
       drawLine();
       return false;
     } else
-      if (activeTool === "rectangle") {
-        drawRect();
+      if (activeTool === "triangle") {
+        drawTriangle();
         return false;
       } else
-        if (activeTool === "ellipse") {
-          drawEllipse();
+        if (activeTool === "rectangle") {
+          drawRect();
           return false;
         } else
-          if (activeTool === "brush") {
-            enableFreeDrawing();
+          if (activeTool === "ellipse") {
+            drawEllipse();
             return false;
           } else
-            if (activeTool === "text") {
-              drawText();
+            if (activeTool === "brush") {
+              enableFreeDrawing();
               return false;
             } else
-              if (activeTool === "zoom") {
-                unselect();
+              if (activeTool === "text") {
+                drawText();
+                return false;
+              } else
+                if (activeTool === "zoom") {
+                  unselect();
 
-                let incriment = 1;
-                const zoomint = $('#zoomint');
-                const cC = document.querySelector('[data-canvas]');
-                $(".zoomicon").removeClass("hide").on('mousedown touchstart', function () {
                   let incriment = 1;
                   const zoomint = $('#zoomint');
-                  const addInc = setInterval(addTimer, 100);
-                  const subtractInc = setInterval(subtractTimer, 100);
-                  function addTimer() {
-                    zoomint[0].stepUp(incriment);
-                    cC.style.transform = 'scale(' + zoomint[0].value + ')';
-                  }
-                  function subtractTimer() {
-                    zoomint[0].stepDown(incriment);
-                    canvas.setZoom(zoomint[0].value)
-                    cC.style.transform = 'scale(' + zoomint[0].value + ')';
-                  }
+                  const cC = document.querySelector('[data-canvas]');
+                  $(".zoomicon").removeClass("hide").on('mousedown touchstart', function () {
+                    let incriment = 1;
+                    const zoomint = $('#zoomint');
+                    const addInc = setInterval(addTimer, 100);
+                    const subtractInc = setInterval(subtractTimer, 100);
+                    function addTimer() {
+                      zoomint[0].stepUp(incriment);
+                      cC.style.transform = 'scale(' + zoomint[0].value + ')';
+                    }
+                    function subtractTimer() {
+                      zoomint[0].stepDown(incriment);
+                      canvas.setZoom(zoomint[0].value)
+                      cC.style.transform = 'scale(' + zoomint[0].value + ')';
+                    }
 
-                  if ($(this).hasClass("zoomin")) {
-                    addTimer();
-                    clearInterval(subtractInc);
-                  } else if ($(this).hasClass("zoomout")) {
-                    subtractTimer();
-                    clearInterval(addInc);
-                  } else {
-                    clearInterval(addInc);
-                    clearInterval(subtractInc);
-                    incriment = 1;
-                    zoomint[0].value = incriment;
-                    cC.style.transform = '';
-                    cC.style.marginLeft = '-' + parseInt(w / 2) + 'px';
-                    cC.style.marginTop = '-' + parseInt(h / 2) + 'px';
-                  }
+                    if ($(this).hasClass("zoomin")) {
+                      addTimer();
+                      clearInterval(subtractInc);
+                    } else if ($(this).hasClass("zoomout")) {
+                      subtractTimer();
+                      clearInterval(addInc);
+                    } else {
+                      clearInterval(addInc);
+                      clearInterval(subtractInc);
+                      incriment = 1;
+                      zoomint[0].value = incriment;
+                      cC.style.transform = '';
+                      cC.style.marginLeft = '-' + parseInt(w / 2) + 'px';
+                      cC.style.marginTop = '-' + parseInt(h / 2) + 'px';
+                    }
 
-                  $(this).on('mouseup mouseout touchend', function () {
-                    clearInterval(addInc);
-                    clearInterval(subtractInc);
+                    $(this).on('mouseup mouseout touchend', function () {
+                      clearInterval(addInc);
+                      clearInterval(subtractInc);
+                    });
                   });
-                });
-              } else {
-                return false;
-              }
+                } else {
+                  return false;
+                }
   return false;
 };
 detectTool();
